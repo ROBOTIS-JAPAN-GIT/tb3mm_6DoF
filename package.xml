@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>6DoF_tb3mm</name>
+  <name>tb3mm_6dof</name>
   <version>0.0.0</version>
-  <description>The 6DoF_tb3mm package</description>
+  <description>The tb3mm_6dof package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
