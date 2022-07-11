@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>tb3_sara_new</name>
+  <name>6dof_tb3mm</name>
   <version>0.0.0</version>
-  <description>The tb3_sara_new package</description>
+  <description>The 6dof_tb3mm package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
