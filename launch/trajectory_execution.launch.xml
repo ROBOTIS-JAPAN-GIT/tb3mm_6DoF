@@ -15,6 +15,6 @@
 
   <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->
   <arg name="moveit_controller_manager" default="turtlebot3_manipulation" />
-  <include file="$(find tb3_sara_new)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml" />
+  <include file="$(find tb3mm_6dof)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml" />
 
 </launch>

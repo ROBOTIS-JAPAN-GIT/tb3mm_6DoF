@@ -9,8 +9,8 @@
   <arg unless="$(eval rviz_config=='')" name="command_args" value="-d $(arg rviz_config)" />
 
   <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
-	args="-d $(find tb3_sara_new)/launch/moveit.rviz" output="screen">
-    <rosparam command="load" file="$(find tb3_sara_new)/config/kinematics.yaml"/>
+	args="-d $(find tb3mm_6dof)/launch/moveit.rviz" output="screen">
+    <rosparam command="load" file="$(find tb3mm_6dof)/config/kinematics.yaml"/>
   </node>
 
 </launch>

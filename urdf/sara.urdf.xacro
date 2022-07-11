@@ -2,10 +2,10 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Include OpenManipulator Gazebo Parameter -->
-  <xacro:include filename="$(find tb3_sara_new)/urdf/sara.gazebo.xacro"/>
+  <xacro:include filename="$(find tb3mm_6dof)/urdf/sara.gazebo.xacro"/>
 
   <!-- Include OpenManipulator Transmission -->
-  <xacro:include filename="$(find tb3_sara_new)/urdf/sara.transmission.xacro"/>
+  <xacro:include filename="$(find tb3mm_6dof)/urdf/sara.transmission.xacro"/>
 
   <!-- Link 1 -->
   <link name="link1">

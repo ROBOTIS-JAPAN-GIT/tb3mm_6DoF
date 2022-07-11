@@ -5,7 +5,7 @@
   <xacro:include filename="$(find turtlebot3_description)/urdf/turtlebot3_waffle_pi_for_open_manipulator.urdf.xacro"/>
 
   <!-- Include OpenMANIPULATOR URDF -->
-  <xacro:include filename="$(find tb3_sara_new)/urdf/sara.urdf.xacro"/>
+  <xacro:include filename="$(find tb3mm_6dof)/urdf/sara.urdf.xacro"/>
 
   <!-- Base fixed joint -->
   <joint name="base_fixed" type="fixed">

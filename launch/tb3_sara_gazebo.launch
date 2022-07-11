@@ -4,7 +4,7 @@
   <arg name="paused" default="true"/>
   <arg name="use_sim_time" default="true"/>
 
-  <rosparam file="$(find tb3_sara_new)/config/gazebo_controller.yaml" command="load"/>
+  <rosparam file="$(find tb3mm_6dof)/config/gazebo_controller.yaml" command="load"/>
 
   <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -14,7 +14,7 @@
   </include>
 
   <!-- send robot urdf to param server -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tb3_sara_new)/urdf/tb3_sara_robot.urdf.xacro'"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tb3mm_6dof)/urdf/tb3_sara_robot.urdf.xacro'"/>
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
@@ -22,16 +22,16 @@
 
   <!-- controller utils -->
   <!-- start joint state controller -->
-  <rosparam file="$(find tb3_sara_new)/config/joint_state_controller.yaml" command="load"/>
+  <rosparam file="$(find tb3mm_6dof)/config/joint_state_controller.yaml" command="load"/>
   <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" output="screen"
     args="spawn joint_state_controller" respawn="false"/>
 
   <!-- run controllers -->
   <!-- arm controller -->
-  <rosparam file="$(find tb3_sara_new)/config/arm_controller.yaml" command="load"/>
+  <rosparam file="$(find tb3mm_6dof)/config/arm_controller.yaml" command="load"/>
   <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="spawn arm_controller"/>
 
   <!-- gripper controller -->
-  <rosparam file="$(find tb3_sara_new)/config/gripper_controller.yaml" command="load"/>
+  <rosparam file="$(find tb3mm_6dof)/config/gripper_controller.yaml" command="load"/>
   <node name="gripper_controller_spawner" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="spawn gripper_controller"/>
 </launch>

@@ -5,6 +5,6 @@
 
   <arg name="pipeline" default="ompl" />
 
-  <include file="$(find tb3_sara_new)/launch/$(arg pipeline)_planning_pipeline.launch.xml" />
+  <include file="$(find tb3mm_6dof)/launch/$(arg pipeline)_planning_pipeline.launch.xml" />
 
 </launch>
