@@ -2,7 +2,7 @@
 <robot name="turtlebot3_for_om_d435" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <!-- argments and includes for d435 camera -->
-  <xacro:arg name="use_nominal_extrinsics" default="false"/>
+  <xacro:arg name="use_nominal_extrinsics" default="true"/>
   <xacro:arg name="add_plug" default="false" />
   <xacro:arg name="use_mesh" default="true" />
   <xacro:arg name="name" default="d435_camera" />
@@ -13,7 +13,7 @@
 <!-- end of argments and includes for d435 camera -->
 
   <xacro:include filename="$(find turtlebot3_description)/urdf/common_properties.xacro"/>
-  <xacro:include filename="$(find 6DoF_tb3mm)/urdf/tb3_for_om_d435.gazebo.xacro"/>
+  <xacro:include filename="$(find tb3mm_6dof)/urdf/tb3_for_om_d435.gazebo.xacro"/>
 
   <link name="base_footprint"/>
 

@@ -4,9 +4,16 @@
 
   <!-- The name of the parameter under which the URDF is loaded -->
   <arg name="robot_description" default="robot_description"/>
+  <arg name="use_d435" default="false" />
 
   <!-- Load universal robot description format (URDF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find tb3mm_6dof)/urdf/tb3_sara_robot.urdf.xacro'"/>
+  <group unless="$(arg use_d435)">
+    <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find tb3mm_6dof)/urdf/tb3_sara_robot.urdf.xacro'"/>
+  </group>
+  <group if="$(arg use_d435)">
+    <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find tb3mm_6dof)/urdf/tb3_sara_robot_d435.urdf.xacro'"/>
+  </group>
+  
 
   <!-- The semantic description that corresponds to the URDF -->
   <param name="$(arg robot_description)_semantic" textfile="$(find tb3mm_6dof)/config/turtlebot3_manipulation.srdf" />
