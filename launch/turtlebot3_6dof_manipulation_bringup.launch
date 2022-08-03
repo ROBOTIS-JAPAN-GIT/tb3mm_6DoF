@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="tb3mm_6dof" type="turtlebot3_6dof_manipulation_bringup" name="turtlebot3_6dof_manipulation_bringup" output="screen"/>
+</launch>

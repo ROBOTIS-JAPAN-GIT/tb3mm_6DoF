@@ -7,7 +7,17 @@ project(tb3mm_6dof)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+# find_package(catkin REQUIRED)
+find_package(catkin REQUIRED
+  COMPONENTS
+    roscpp
+    actionlib
+    control_msgs
+    std_msgs
+    trajectory_msgs
+    moveit_msgs
+)
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -98,11 +108,21 @@ find_package(catkin REQUIRED)
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
+# catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES tb3mm_6dof
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
+# )
+catkin_package(
+  INCLUDE_DIRS include
+  CATKIN_DEPENDS
+    roscpp
+    actionlib
+    control_msgs
+    std_msgs
+    trajectory_msgs
+    moveit_msgs
 )
 
 ###########
@@ -112,9 +132,13 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+    include
+    ${catkin_INCLUDE_DIRS}
 )
+
+add_executable(turtlebot3_6dof_manipulation_bringup src/turtlebot3_manipulation_bringup.cpp)
+add_dependencies(turtlebot3_6dof_manipulation_bringup ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(turtlebot3_6dof_manipulation_bringup ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -187,6 +211,13 @@ include_directories(
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
+install(TARGETS turtlebot3_6dof_manipulation_bringup
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 
 #############
 ## Testing ##
