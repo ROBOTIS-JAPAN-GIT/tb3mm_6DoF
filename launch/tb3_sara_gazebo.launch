@@ -1,5 +1,5 @@
 <launch>
-  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [waffle, waffle_pi]"/>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [waffle, waffle_pi, big_wheel, big_wheel_3rs]"/>
   <arg name="gui" default="true"/>
   <arg name="paused" default="true"/>
   <arg name="use_sim_time" default="true"/>
@@ -17,17 +17,17 @@
 
   <!-- send robot urdf to param server -->
   <group unless="$(arg use_d435)">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tb3mm_6dof)/urdf/tb3_sara_robot.urdf.xacro'"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tb3mm_6dof)/urdf/tb3_$(arg model)_sara.urdf.xacro'"/>
   </group>
   <group if="$(arg use_d435)">
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tb3mm_6dof)/urdf/tb3_sara_robot_d435.urdf.xacro'"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tb3mm_6dof)/urdf/tb3_$(arg model)_sara_d435.urdf.xacro'"/>
   </group>
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-    args="-urdf -param robot_description -model robot -x 0.0 -y 0.0 -Y 0.0 -J joint1 0.0 -J joint2 0.0 -J joint3 0.0 -J joint4 0.0 -J joint5 0.0 -J joint6 0.0 -J gripper 0.0 -J gripper_sub 0.0"/>
+    args="-urdf -param robot_description -model tb3_$(arg model)_sara -x 0.0 -y 0.0 -Y 0.0 -J joint1 0.0 -J joint2 0.0 -J joint3 0.0 -J joint4 0.0 -J joint5 0.0 -J joint6 0.0 -J gripper 0.0 -J gripper_sub 0.0"/>
 
   <!-- robot_state_publisher-->
-    <node name="robot_state_publisher_realsense" pkg="robot_state_publisher" type="robot_state_publisher">
+  <node name="robot_state_publisher_realsense" pkg="robot_state_publisher" type="robot_state_publisher">
     <param name="publish_frequency" type="double" value="50.0" />
   </node>
 

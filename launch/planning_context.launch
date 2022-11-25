@@ -1,17 +1,21 @@
 <launch>
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
-  <arg name="load_robot_description" default="false"/>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi, big_wheel, big_wheel_3rs]"/>
+  <!-- <arg name="load_robot_description" default="false"/> -->
+  <arg name="load_robot_description" default="$(arg load_robot_description)"/>
 
   <!-- The name of the parameter under which the URDF is loaded -->
   <arg name="robot_description" default="robot_description"/>
-  <arg name="use_d435" default="false" />
+  <!-- <arg name="use_d435" default="false" /> -->
+  <arg name="use_d435" default="$(arg use_d435)" />
 
   <!-- Load universal robot description format (URDF) -->
+  <!-- WARNING: Set "use_d435" value to true if you want to use TB3 common TB3 Waffle Pi only -->
   <group unless="$(arg use_d435)">
-    <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find tb3mm_6dof)/urdf/tb3_sara_robot.urdf.xacro'"/>
+    <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find tb3mm_6dof)/urdf/tb3_$(arg model)_sara.urdf.xacro'"/>
   </group>
   <group if="$(arg use_d435)">
-    <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find tb3mm_6dof)/urdf/tb3_sara_robot_d435.urdf.xacro'"/>
+    <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find tb3mm_6dof)/urdf/tb3_$(arg model)_sara_d435.urdf.xacro'"/>
   </group>
   
 
